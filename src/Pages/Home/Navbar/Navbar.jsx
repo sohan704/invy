@@ -1,0 +1,49 @@
+import { FaPlayCircle, FaTools } from "react-icons/fa";
+
+const Navbar = () => {
+
+  const links = <>
+    <div className="flex justify-center items-center gap-5 text-2xl">
+      <li>Home</li>
+      <li>Create-Store</li>
+      <li> <span><FaPlayCircle /> Watch Video </span> </li>
+    </div>
+  </>
+
+  return (
+    <div>
+      <div className="navbar fixed z-10 opacity-90 bg-base-100">
+        <div className="navbar-start items-center">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+
+              {
+                links
+              }
+            </ul>
+          </div>
+          <div className="flex text-2xl justify-center gap-1 items-center"><FaTools /><a className="font-bold text-3xl">Invy</a></div>
+          {/* <div className="flex justify-center gap-1 items-center"><img className="h-[30px] w-[30px] pt-1 object-contain" src='https://i.ibb.co/5GXj38c/wrench.png' alt="" /><a className="font-bold text-2xl">Invy</a></div> */}
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+
+            {
+              links
+            }
+          </ul>
+        </div>
+        <div className="navbar-end gap-3">
+          <a className="btn  btn-neutral  text-xl">Login</a>
+          <a className="btn btn-neutral text-xl">Register</a>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
