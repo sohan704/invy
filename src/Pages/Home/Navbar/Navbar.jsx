@@ -1,9 +1,10 @@
 import { FaPlayCircle, FaTools } from "react-icons/fa";
 
 const Navbar = () => {
+  
 
   const links = <>
-    <div className="flex justify-center items-center gap-5 text-2xl">
+    <div className="flex text-3xl justify-center items-center gap-5">
       <li>Home</li>
       <li>Create-Store</li>
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
@@ -11,8 +12,8 @@ const Navbar = () => {
   </>
 
   return (
-    <div>
-      <div className="navbar fixed z-10 opacity-90 bg-base-100">
+    <div className="relative">
+      <div className="navbar absolute z-10 opacity-90 bg-white">
         <div className="navbar-start items-center">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
