@@ -4,7 +4,7 @@ const Navbar = () => {
   
 
   const links = <>
-    <div className="flex text-3xl justify-center items-center gap-5">
+    <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li>Home</li>
       <li>Create-Store</li>
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar absolute z-10 opacity-90 bg-white">
+      <div className="navbar absolute z-10 opacity-100 lg:opacity-90 bg-white">
         <div className="navbar-start items-center">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,7 +26,7 @@ const Navbar = () => {
               }
             </ul>
           </div>
-          <div className="flex text-2xl justify-center gap-1 items-center"><FaTools /><a className="font-bold text-3xl">Invy</a></div>
+          <div className="flex text-xl md:text-2xl justify-center gap-1 items-center"><FaTools /><a className="font-bold text-xl md:text-3xl">Invy</a></div>
           {/* <div className="flex justify-center gap-1 items-center"><img className="h-[30px] w-[30px] pt-1 object-contain" src='https://i.ibb.co/5GXj38c/wrench.png' alt="" /><a className="font-bold text-2xl">Invy</a></div> */}
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -38,8 +38,8 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <a className="btn  btn-neutral  text-xl">Login</a>
-          <a className="btn btn-neutral text-xl">Register</a>
+          <a className="btn  btn-neutral  text-sm  md:text-xl">Login</a>
+          <a className="btn btn-neutral text-sm  md:text-xl">Register</a>
 
         </div>
       </div>
