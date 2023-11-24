@@ -1,4 +1,5 @@
 import { FaPlayCircle, FaTools } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   
@@ -38,7 +39,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <a className="btn  btn-neutral  text-sm  md:text-xl">Login</a>
+          <Link to='/login'><a className="btn  btn-neutral  text-sm  md:text-xl">Login</a></Link>
           <a className="btn btn-neutral text-sm  md:text-xl">Register</a>
 
         </div>
