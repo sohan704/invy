@@ -1,12 +1,12 @@
 import { FaPlayCircle, FaTools } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   
 
   const links = <>
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
-      <li>Home</li>
+      <li><NavLink to='/'>Home</NavLink></li>
       <li>Create-Store</li>
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar absolute z-10 opacity-100 lg:opacity-90 bg-white">
+      <div className="navbar absolute z-10 opacity-100 lg:opacity-90 bg-[#F5F7F8]">
         <div className="navbar-start items-center">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +40,8 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-3">
           <Link to='/login'><a className="btn  btn-neutral  text-sm  md:text-xl">Login</a></Link>
-          <a className="btn btn-neutral text-sm  md:text-xl">Register</a>
+          <Link to='/register'><a className="btn  btn-neutral  text-sm  md:text-xl">Register</a></Link>
+         
 
         </div>
       </div>
