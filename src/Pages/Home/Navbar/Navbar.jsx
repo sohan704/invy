@@ -1,13 +1,22 @@
+import { useContext } from "react";
 import { FaPlayCircle, FaTools } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
-  
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut().then(res => {
+      console.log(res);
+    }).catch(error => console.log(error));
+  }
+
 
   const links = <>
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li><NavLink to='/'>Home</NavLink></li>
-      <li>Create-Store</li>
+      <li><NavLink to='/createShop'>Create-Store</NavLink></li>
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
   </>
@@ -39,9 +48,23 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <Link to='/login'><a className="btn  btn-neutral  text-sm  md:text-xl">Login</a></Link>
-          <Link to='/register'><a className="btn  btn-neutral  text-sm  md:text-xl">Register</a></Link>
-         
+
+          {
+            user && <div className="text-3xl">{user?.displayName}</div>
+          }
+
+          {user && <div className="avatar online">
+            <div  className="w-16 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          </div>}
+          {user ? ' ' : <Link to='/login'><a className="btn  btn-neutral  text-sm  md:text-xl">Login</a></Link>}
+          {user && <Link onClick={handleLogout} to='/login'><a className="btn  btn-neutral  text-sm  md:text-xl">Logout</a></Link>}
+
+          {user ? " " : <Link to='/register'><a className="btn  btn-neutral  text-sm  md:text-xl">Register</a></Link>}
+
+
+
 
         </div>
       </div>

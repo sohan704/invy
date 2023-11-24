@@ -1,0 +1,33 @@
+@keyframes myAnim {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+
+.my-animate {
+
+  animation: myAnim 2s ease 0s infinite normal forwards;
+
+}
+
+
+.my-gradient {
+  background-image: linear-gradient(to right top, #45474b, #6d6f73, #989a9d, #c5c8ca, #f5f7f8);
+}
+
+.btn-my-bg {
+  background-image: linear-gradient(to bottom, #f5f7f8, #b7f9fa, #90f8cc, #b0eb79, #f4ce14);
+}
+
+.card-my-bg{
+  background-image: linear-gradient(to right bottom, #45474b, #6d6f73, #989a9d, #c5c8ca, #f5f7f8);
+}

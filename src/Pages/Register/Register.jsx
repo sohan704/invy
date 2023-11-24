@@ -1,12 +1,61 @@
-
+import { useContext } from 'react';
 import Navbar from '../Home/Navbar/Navbar';
 import './Register.css';
-
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 
 const Register = () => {
+
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  const axiosPublic = UseAxiosPublic();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    console.log('register is clicked');
+
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo = form.photo.value;
+    const user = { name, email, password, photo };
+
+
+    const userInfo = {name, email, photo};
+
+
+    createUser(email, password).then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(name, photo).then(() => {
+
+
+
+
+        axiosPublic.post('/users', userInfo).then(res => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: `Welcome ${name}`,
+              text: "NEW USER ADDED!",
+              icon: "success"
+            });
+          }
+        })
+      }).catch(error => console.log(error));
+    })
+
+
+
+
+    console.log(user);
+  }
+
+
+
+
   return (
     <div className='h-[120vh] my-gradient'>
       <Navbar></Navbar>
@@ -19,33 +68,34 @@ const Register = () => {
 
             </div>
             <div className="flex-1 card shrink-0 w-full max-w-sm shadow-2xl card-my-bg">
-              <form className="card-body">
+              <form onSubmit={handleRegister} className="card-body">
                 <div className="form-control">
                   <div className='text-2xl text-[#F5F7F8]'>
                     Name
                   </div>
-                  <input type="text" placeholder="Name" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
+                  <input name='name' type="text" placeholder="Name" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
                 </div>
                 <div className="form-control">
                   <div className='text-2xl text-[#F5F7F8]'>
                     Email
                   </div>
-                  <input type="email" placeholder="email" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
+                  <input name='email' type="email" placeholder="email" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
                 </div>
                 <div className="form-control">
                   <div className='text-2xl text-[#F5F7F8]'>
                     Password
                   </div>
-                  <input type="password" placeholder="password" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
+                  <input name='password' type="password" placeholder="password" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
 
                 </div>
                 <div className="form-control">
                   <div className='text-2xl text-[#F5F7F8]'>
-                    Profile Photo
+                    Photo
                   </div>
-                  <input type="file" className="file-input border-none bg-[#F5F7F8] w-full max-w-xs" />
+                  <input name='photo' type="text" placeholder="Photo URL" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
 
                 </div>
+
                 <div className="form-control mt-6">
                   <button className="btn border-none text-2xl bg-[#45474B] text-[#F5F7F8]">Register</button>
                 </div>

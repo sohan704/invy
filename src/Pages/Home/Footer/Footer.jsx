@@ -49,7 +49,7 @@ const Footer = () => {
       <footer className="footer px-10 py-4 border-t bg-white text-black border-base-300">
         <aside className="items-center text-2xl grid-flow-col">
           <span className="text-2xl"><FaTools /></span>
-          <p>Invy Productions <br />Providing Efficient Management since 2000</p>
+          <p>Invy@Support.com <br />Providing Efficient Management since 2000</p>
         </aside>
         <nav className="md:place-self-center md:justify-self-end">
           <div className="grid text-3xl grid-flow-col gap-4">
