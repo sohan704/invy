@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { FaPlayCircle, FaTools } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import UseOwnerVerification from "../../../Hooks/UseOwnerVerification";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [verify] = UseOwnerVerification();
 
+  
   const handleLogout = () => {
     logOut().then(res => {
       console.log(res);
@@ -16,7 +19,7 @@ const Navbar = () => {
   const links = <>
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li><NavLink to='/'>Home</NavLink></li>
-      <li><NavLink to='/createShop'>Create-Store</NavLink></li>
+      {verify?.owner || <li><NavLink to='/createShop'>Create-Store</NavLink></li>}
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
   </>
