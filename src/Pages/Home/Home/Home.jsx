@@ -8,6 +8,9 @@ import Socials from "../Socials/Socials";
 import Timeline from "../Timeline/Timeline";
 
 const Home = () => {
+
+  
+
   return (
     <div> 
       <Navbar></Navbar>
@@ -17,7 +20,9 @@ const Home = () => {
       <Socials></Socials>
       <Download></Download>
       <Email></Email>
-      <div className="divider divider-neutral w-11/12 mx-auto"> Invy</div>
+      <div data-aos="fade-up"
+      data-aos-duration="1600"
+     data-aos-anchor-placement="top-bottom" className="divider divider-neutral w-11/12 mx-auto"> Invy</div>
       <Footer></Footer>
     
     </div>

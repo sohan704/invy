@@ -5,10 +5,10 @@ const Download = () => {
         Download Our Mobile App
       </div>
       <div className="flex flex-col lg:flex-row-reverse justify-center items-center">
-        <div className="flex-1">
+        <div data-aos="fade-up" data-aos-duration="1600" className="flex-1">
           <img src="https://i.ibb.co/vLQgbxZ/undraw-Download-re-li50.png" alt="" />
         </div>
-        <div className="flex-1 text-xl">
+        <div data-aos="fade-down" data-aos-duration="1600" className="flex-1 text-xl">
           <ul className="timeline timeline-vertical">
             <li>
 

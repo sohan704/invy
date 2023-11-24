@@ -8,7 +8,7 @@ const Banner = () => {
         Your browser does not support the video tag.
       </video>
 
-      <div className="absolute inset-0 h-full bg-gray-700 bg-opacity-40">
+      <div className="absolute inset-0 h-full bg-gray-500 bg-opacity-40">
         <div className="flex justify-center items-center">
           <div className="text-2xl md:4xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300 text-center text-white mt-20 lg:mt-40">
             Optimize Inventory
