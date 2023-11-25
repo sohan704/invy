@@ -1,6 +1,6 @@
 const AllProducts = () => {
   return (
-    <div>
+    <div className="h-[100vh]">
       All Products Page      
     </div>
   );
