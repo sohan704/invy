@@ -3,10 +3,13 @@ import Navbar from "../Home/Navbar/Navbar";
 import { AuthContext } from "../../Providers/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const axiosPublic = UseAxiosPublic();
 const CreateShop = () => {
 
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleCreateShop = (e) => {
     e.preventDefault();
@@ -32,6 +35,7 @@ const CreateShop = () => {
           text: "Congratulation You just created a new Shop!",
           icon: "success"
         });
+        navigate('/');
       }
     })
     axiosPublic.patch(`/users/${user?.email}`, userInfo).then(res => {

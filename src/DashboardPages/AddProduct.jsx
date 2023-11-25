@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
+import UseMyProducts from '../Hooks/UseMyProducts';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,6 +18,7 @@ const AddProduct = () => {
   const { user } = useContext(AuthContext);
   //the shopData
   const [refetch, shopData] = UseShopData();
+  const [,productData] = UseMyProducts();
   // console.log(shopData);
 
   const shop_id = shopData?._id;
@@ -89,6 +92,16 @@ const AddProduct = () => {
 
     const res2 = await axiosPublic.patch(`/reduceProductLimit/${user?.email}`);
     console.log('Reduced the product limit', res2.data);
+
+    refetch();
+    if(res.data.insertedId && (res2.data.modifiedCount > 0)){
+      
+      Swal.fire({
+        title: `${data?.productName} Added`,
+        text: `You can add ${shopData?.productLimit} more product!`,
+        icon: "success"
+      });
+    }
   }
 
 
@@ -101,7 +114,7 @@ const AddProduct = () => {
 
         <div className='border-t-2 border-b-2 border-gray-700'>
           <div className="flex justify-between gap-3 items-center py-5  w-11/12 mx-auto">
-            <div className="text-2xl">Total <span className='text-black font-bold'>6</span> Products Added</div>
+            <div className="text-2xl">Total <span className='text-black font-bold'>{productData?.length}</span> Products Added</div>
             <div className='border-l-2 border-gray-700 pl-5'>
               <button onClick={() => document.getElementById('my_modal_1').showModal()} className="btn btn-neutral text-2xl border-none bg-gray-600">
                 Add Product

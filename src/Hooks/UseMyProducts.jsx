@@ -2,18 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "./UseAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import UseShopData from "./UseShopData";
 
-const UseShopData = () => {
+const UseMyProducts = () => {
 
   const axiosPublic = UseAxiosPublic();
   const {user} = useContext(AuthContext);
-  
+  const [,shopData] = UseShopData();
+
 //FIX URLLLLLLLLLL BEFORE USING
 
   const {refetch, data: productData} = useQuery({
-    queryKey: ['productData', user?.email],
+    queryKey: ['productData', shopData?._id],
     queryFn: async () => {
-       const res = await axiosPublic.get(`/getShopData/${user?.email}`);
+       const res = await axiosPublic.get(`/getProductData/${shopData?._id}`);
        return res.data;
     }
   });
@@ -22,4 +24,4 @@ const UseShopData = () => {
   
 };
 
-export default UseShopData;
+export default UseMyProducts;

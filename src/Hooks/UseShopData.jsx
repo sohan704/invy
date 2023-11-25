@@ -9,7 +9,7 @@ const UseShopData = () => {
   const {user} = useContext(AuthContext);
 
 
-  const {refetch, data: shopData} = useQuery({
+  const {refetch, data: shopData = []} = useQuery({
     queryKey: ['shopData', user?.email],
     queryFn: async () => {
        const res = await axiosPublic.get(`/getShopData/${user?.email}`);
