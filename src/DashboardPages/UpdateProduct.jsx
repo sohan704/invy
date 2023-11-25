@@ -1,7 +1,9 @@
+
+
 const UpdateProduct = () => {
   return (
     <div>
-       Update Route
+      
     </div>
   );
 };

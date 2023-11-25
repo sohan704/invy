@@ -1,71 +1,110 @@
+import { FaEdit, FaTrash } from "react-icons/fa";
 import UseMyProducts from "../Hooks/UseMyProducts";
+import Swal from "sweetalert2";
+import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
 const AllProducts = () => {
 
-  const [, myProductList] = UseMyProducts();
+  const axiosPublic = UseAxiosPublic();
+  
+
+  const [refetch , myProductList] = UseMyProducts();
   console.log(myProductList);
+
+  const handleDelete = (id) => {
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        axiosPublic.delete(`/product/${id}`).then(res => {
+          console.log(res.data);
+          Swal.fire({
+            title: "Deleted!",
+            text: "The Product has been deleted.",
+            icon: "success"
+          });
+          refetch();
+          
+        });
+
+
+
+        console.log('Product ID is ', id);
+      }
+    });
+
+  }
+
+
+
   return (
     <div className="h-screen">
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="text-3xl text-gray-700">
             <tr>
               <th>
                 <label>
-                  <input type="checkbox" className="checkbox" />
+                  #
                 </label>
               </th>
               <th>Name</th>
               <th>Image</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>Quantity</th>
+              <th>Sale Count</th>
+              <th >Actions</th>
             </tr>
           </thead>
-          <tbody>
-         
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+          <tbody className="text-2xl border-t-2 border-gray-800">
+
+            {
+              myProductList && myProductList?.map((product, idx) => {
+
+                return <tr key={idx + 1} className="border-b-2 border-gray-400">
+                  <th>
+                    <label>
+                      {idx + 1}
+                    </label>
+                  </th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <div className="font-bold">{product?.productName}</div>
+
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-              </td>
-              <td>Purple</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-xs">Delete</button>
-              </th>
-              <th>
-                <button className="btn btn-ghost btn-xs">Update</button>
-              </th>
-            </tr>
-         
-          
-           
+                  </td>
+                  <td>
+                    <img className="h-[80px] w-[80px] object-cover" src={product?.productImage} alt="" />
+                  </td>
+                  <td className="text-3xl">{product?.productQuantity}</td>
+                  <th>
+                    <button className="text-3xl">{product?.saleCount}</button>
+                  </th>
+                  <th className="space-x-2">
+                    <button onClick={() => handleDelete(product?._id)} className="text-3xl btn text-red-400"><FaTrash></FaTrash></button>
+
+                    <button className="text-3xl btn text-sky-500"><FaEdit></FaEdit></button>
+                  </th>
+
+                </tr>
+              })
+            }
+
+
+
           </tbody>
-       
-        
+
+
 
         </table>
       </div>

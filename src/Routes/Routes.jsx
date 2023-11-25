@@ -8,6 +8,8 @@ import Dashboard from "../Layout/Dashboard";
 import AddProduct from "../DashboardPages/AddProduct";
 import AllProducts from "../DashboardPages/AllProducts";
 import UpdateProduct from "../DashboardPages/UpdateProduct";
+import ProductCollection from "../DashboardPages/ProductCollection";
+
 
 
 export const router = createBrowserRouter([
@@ -49,7 +51,12 @@ export const router = createBrowserRouter([
       {
         path:'updateProduct',
         element:<UpdateProduct></UpdateProduct>
+      },
+      {
+        path:'productCollection',
+        element: <ProductCollection></ProductCollection>,
       }
+      
     ]
   }
 ]);
