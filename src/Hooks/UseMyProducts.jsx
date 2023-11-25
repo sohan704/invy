@@ -7,17 +7,18 @@ const UseShopData = () => {
 
   const axiosPublic = UseAxiosPublic();
   const {user} = useContext(AuthContext);
+  
+//FIX URLLLLLLLLLL BEFORE USING
 
-
-  const {refetch, data: shopData} = useQuery({
-    queryKey: ['shopData', user?.email],
+  const {refetch, data: productData} = useQuery({
+    queryKey: ['productData', user?.email],
     queryFn: async () => {
        const res = await axiosPublic.get(`/getShopData/${user?.email}`);
        return res.data;
     }
   });
 
-  return [refetch, shopData];
+  return [refetch, productData];
   
 };
 
