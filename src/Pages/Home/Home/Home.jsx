@@ -10,7 +10,12 @@ import Timeline from "../Timeline/Timeline";
 
 const Home = () => {
 
-   const [, isAdmin] = UseAdmin();
+   const [ , ,isAdmin] = UseAdmin();
+
+
+  //  if(loading){
+  //   return <span className="loading loading-spinner loading-lg"></span>
+  //  }
    console.log('Check admin ',isAdmin);
 
   return (

@@ -8,7 +8,14 @@ import UseAdmin from "../../../Hooks/UseAdmin";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [verify] = UseOwnerVerification();
-  const [, isAdmin] = UseAdmin();
+  const [, loading , isAdmin] = UseAdmin();
+
+  
+     if(loading){
+    return <span className="loading loading-spinner loading-lg"></span>
+   }
+
+
   console.log(isAdmin?.admin);
   const handleLogout = () => {
     logOut().then(res => {

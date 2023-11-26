@@ -7,10 +7,12 @@ import UseAdmin from "../Hooks/UseAdmin";
 const Dashboard = () => {
 
   const [, shopData] = UseShopData();
-  const [, isAdmin] = UseAdmin();
+  const [, loading, isAdmin] = UseAdmin();
   console.log('Check admin ',isAdmin);
 
-
+  if(loading){
+    return <span className="loading loading-spinner loading-lg"></span>;
+  }
   //  const {shopLogo} = shopData;
   //  console.log(shopData);
   //  console.log();

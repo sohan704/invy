@@ -3,19 +3,19 @@ import UseAxiosPublic from "./UseAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 
-const UseAdmin = () => {
+const UseAllSales = () => {
+
   const axiosPublic = UseAxiosPublic();
   const {user} = useContext(AuthContext);
-
-  const {refetch, data: isAdmin = [], isPending: isAdminLoading} = useQuery({
-    queryKey: ['isAdminVerify', user?.email],
+  const {refetch, data: allSale = [],isPending: isSalesLoading} = useQuery({
+    queryKey: ['adminSales', user?.email, user?.displayName],
     queryFn: async () => {
-       const res = await axiosPublic.get(`/checkAdmin/${user?.email}`);
+       const res = await axiosPublic.get(`/allSales/${user?.email}`);
        return res.data;
     }
   });
 
-  return [refetch, isAdminLoading, isAdmin];
+  return [refetch, isSalesLoading, allSale];
 };
 
-export default UseAdmin;
+export default UseAllSales;
