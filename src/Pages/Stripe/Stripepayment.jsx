@@ -1,12 +1,16 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import StripeForm from "./StripeForm";
+import { useParams } from "react-router-dom";
 
 
 //TODO
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_KEY)
 
 const Stripepayment = () => {
+  const {price, limit} = useParams();
+  console.log(price, limit);
+
   return (
     <div>
       <div>
@@ -16,7 +20,7 @@ const Stripepayment = () => {
       </div>
       <div className="w-11/12 mx-auto">
         <Elements stripe={stripePromise}>
-          <StripeForm></StripeForm>
+          <StripeForm price={price} limit={limit}></StripeForm>
         </Elements>
       </div>
     </div>

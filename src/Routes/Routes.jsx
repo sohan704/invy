@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
         element: <Premium></Premium>,
       },
       {
-        path:'stripepayment',
+        path:'payment/stripepayment/:price/:limit',
         element:<Stripepayment></Stripepayment>
       }
 

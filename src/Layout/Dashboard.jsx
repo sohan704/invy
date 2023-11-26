@@ -25,13 +25,21 @@ const Dashboard = () => {
             <li><NavLink to="/dashboard/allProduct">All Product</NavLink></li>
             <li><NavLink to="/dashboard/productCollection">Product Collection</NavLink></li>
             <li><NavLink to="/dashboard/payment">Payment</NavLink></li>
+
+          </ul>
+          <br />
+          <div className="divider divider-neutral"></div>
+          <ul className="menu ">
+            <li className="btn text-2xl text-neutral  btn-outline  btn-neutral"><NavLink to="/">Home</NavLink></li>
+
+
           </ul>
         </div>
         <div className="flex-1">
           <Outlet></Outlet>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };

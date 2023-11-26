@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li><NavLink to='/'>Home</NavLink></li>
       {verify?.owner || <li><NavLink to='/createShop'>Create-Store</NavLink></li>}
-      {verify?.owner && <li><NavLink to='/dashboard'>Dashboard</NavLink></li>}
+      {verify?.owner && <li><NavLink to='/dashboard/addProduct'>Dashboard</NavLink></li>}
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
   </>

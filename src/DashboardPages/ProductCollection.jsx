@@ -63,8 +63,8 @@ const ProductCollection = () => {
                   myProductList && myProductList?.map((product, idx) => {
 
                     return <tr key={idx + 1} className="border-b-2 border-gray-400">
-                      <th>
-                        <label>
+                      <th >
+                        <label >
                           {product?._id}
                         </label>
                       </th>

@@ -36,9 +36,24 @@ const CheckoutPage = () => {
 
   const handleGetPaid = () => {
     generatePdf();
-    const { productName, productionCost, profitMargin, productImage, productAddedDate, shop_name, sellingPrice } = checkoutProduct;
+    const { productName, productionCost, profitMargin, productImage, productAddedDate, shop_name, sellingPrice, shop_id, productQuantity, 
+    } = checkoutProduct;
 
-    axiosPublic.post(`/sales/${checkoutProduct?._id}`, { productName, productionCost, profitMargin, productImage, productSoldDate: formattedDateTime, productAddedDate, shop_name, sellingPrice }).then(res => {
+    if (productQuantity < 1) {
+      toast.error(`No more product left!!`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      return;
+    }
+
+    axiosPublic.post(`/sales/${checkoutProduct?._id}`, { productName, productionCost, profitMargin, productImage, productSoldDate: formattedDateTime, productAddedDate, shop_name, sellingPrice, shop_id }).then(res => {
       toast.success('Added to Sales', {
         position: "top-center",
         autoClose: 2000,
