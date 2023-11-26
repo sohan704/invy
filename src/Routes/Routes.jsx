@@ -14,6 +14,7 @@ import Premium from "../DashboardPages/Premium";
 import Stripepayment from "../Pages/Stripe/Stripepayment";
 import SalesCount from "../DashboardPages/SalesCount";
 import SalesHistory from "../DashboardPages/SalesHistory";
+import Salesview from "../DashboardPages/Salesview";
 
 
 
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         path:'salesHistory',
         element: <SalesHistory></SalesHistory>,
       },
+      {
+        path:'salesview',
+        element:<Salesview></Salesview>
+      }
 
       
     ]

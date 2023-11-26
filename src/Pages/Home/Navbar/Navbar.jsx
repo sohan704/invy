@@ -3,12 +3,13 @@ import { FaPlayCircle, FaTools } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import UseOwnerVerification from "../../../Hooks/UseOwnerVerification";
+import UseAdmin from "../../../Hooks/UseAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [verify] = UseOwnerVerification();
-
-  
+  const [, isAdmin] = UseAdmin();
+  console.log(isAdmin?.admin);
   const handleLogout = () => {
     logOut().then(res => {
       console.log(res);
@@ -19,8 +20,9 @@ const Navbar = () => {
   const links = <>
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li><NavLink to='/'>Home</NavLink></li>
-      {verify?.owner || <li><NavLink to='/createShop'>Create-Store</NavLink></li>}
+      {!verify?.owner ? isAdmin.admin ? ' ' : <li><NavLink to='/createShop'>Create-Store</NavLink></li> : ' '}
       {verify?.owner && <li><NavLink to='/dashboard/addProduct'>Dashboard</NavLink></li>}
+      {isAdmin.admin && <li><NavLink to='/dashboard/salesview'>Admin Dashboard</NavLink></li>}
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
   </>
