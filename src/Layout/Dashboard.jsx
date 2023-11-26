@@ -24,6 +24,7 @@ const Dashboard = () => {
             <li><NavLink to="/dashboard/addProduct">Add Product</NavLink></li>
             <li><NavLink to="/dashboard/allProduct">All Product</NavLink></li>
             <li><NavLink to="/dashboard/productCollection">Product Collection</NavLink></li>
+            <li><NavLink to="/dashboard/payment">Payment</NavLink></li>
           </ul>
         </div>
         <div className="flex-1">

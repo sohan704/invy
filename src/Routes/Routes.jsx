@@ -10,6 +10,7 @@ import AllProducts from "../DashboardPages/AllProducts";
 import UpdateProduct from "../DashboardPages/UpdateProduct";
 import ProductCollection from "../DashboardPages/ProductCollection";
 import CheckoutPage from "../DashboardPages/CheckoutPage";
+import Premium from "../DashboardPages/Premium";
 
 
 
@@ -61,6 +62,11 @@ export const router = createBrowserRouter([
         path:'checkout/:id',
         element: <CheckoutPage></CheckoutPage>,
       },
+      {
+        path:'payment',
+        element: <Premium></Premium>,
+      }
+
       
     ]
   }

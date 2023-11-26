@@ -4,10 +4,12 @@ import './Register.css';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const axiosPublic = UseAxiosPublic();
 
@@ -42,6 +44,7 @@ const Register = () => {
               text: "NEW USER ADDED!",
               icon: "success"
             });
+            navigate('/');
           }
         })
       }).catch(error => console.log(error));

@@ -98,7 +98,7 @@ const AddProduct = () => {
       
       Swal.fire({
         title: `${data?.productName} Added`,
-        text: `You can add ${shopData?.productLimit} more product!`,
+        text: `You can add ${parseInt(shopData?.productLimit) - 1} more product!`,
         icon: "success"
       });
     }
