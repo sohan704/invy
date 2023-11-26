@@ -11,6 +11,7 @@ import UpdateProduct from "../DashboardPages/UpdateProduct";
 import ProductCollection from "../DashboardPages/ProductCollection";
 import CheckoutPage from "../DashboardPages/CheckoutPage";
 import Premium from "../DashboardPages/Premium";
+import Stripepayment from "../Pages/Stripe/Stripepayment";
 
 
 
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path:'payment',
         element: <Premium></Premium>,
+      },
+      {
+        path:'stripepayment',
+        element:<Stripepayment></Stripepayment>
       }
 
       
