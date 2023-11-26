@@ -28,7 +28,7 @@ const ProductCollection = () => {
 
   return (
     <div>
-      <div className="h-screen">
+      <div className="h-screen max-w-screen-lg">
 
         <div className="flex justify-center gap-2 items-center py-5 border-b-2 border-gray-700">
           <input type="text" placeholder="Type ID here" className="input input-bordered input-md w-full max-w-xs"

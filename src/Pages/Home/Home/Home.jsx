@@ -1,3 +1,4 @@
+import UseAdmin from "../../../Hooks/UseAdmin";
 import Banner from "../Banner/Banner";
 import Download from "../Download/Download";
 import Email from "../Email/Email";
@@ -9,7 +10,8 @@ import Timeline from "../Timeline/Timeline";
 
 const Home = () => {
 
-
+   const [, isAdmin] = UseAdmin();
+   console.log('Check admin ',isAdmin);
 
   return (
     <div>

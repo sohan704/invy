@@ -25,6 +25,8 @@ const Dashboard = () => {
             <li><NavLink to="/dashboard/allProduct">All Product</NavLink></li>
             <li><NavLink to="/dashboard/productCollection">Product Collection</NavLink></li>
             <li><NavLink to="/dashboard/payment">Payment</NavLink></li>
+            <li><NavLink to="/dashboard/salesCount">Sales Count</NavLink></li>
+            <li><NavLink to="/dashboard/salesHistory">Sales History</NavLink></li>
 
           </ul>
           <br />
