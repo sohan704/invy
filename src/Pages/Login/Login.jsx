@@ -4,10 +4,11 @@ import Navbar from '../Home/Navbar/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-
+  const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
 
   const handleLogin = (e) => {
@@ -22,6 +23,7 @@ const Login = () => {
         text: `LOGGED IN`,
         icon: "success"
       });
+     navigate('/');
     }).catch(error => {
        console.log(error);
       Swal.fire({

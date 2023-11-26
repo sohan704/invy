@@ -2,15 +2,16 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import UseMyProducts from "../Hooks/UseMyProducts";
 import Swal from "sweetalert2";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import { useState } from "react";
 
 const AllProducts = () => {
 
   const axiosPublic = UseAxiosPublic();
+
   
-
-  const [refetch , myProductList] = UseMyProducts();
+  const [refetch, myProductList] = UseMyProducts();
   console.log(myProductList);
-
+  
   const handleDelete = (id) => {
 
     Swal.fire({
@@ -32,7 +33,7 @@ const AllProducts = () => {
             icon: "success"
           });
           refetch();
-          
+
         });
 
 
@@ -66,39 +67,43 @@ const AllProducts = () => {
           </thead>
           <tbody className="text-2xl border-t-2 border-gray-800">
 
-            {
-              myProductList && myProductList?.map((product, idx) => {
+           
+              {
+               myProductList && myProductList?.map((product, idx) => {
 
-                return <tr key={idx + 1} className="border-b-2 border-gray-400">
-                  <th>
-                    <label>
-                      {idx + 1}
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <div className="font-bold">{product?.productName}</div>
+                  return <tr key={idx + 1} className="border-b-2 border-gray-400">
+                    <th>
+                      <label>
+                        {idx + 1}
+                      </label>
+                    </th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <div className="font-bold">{product?.productName}</div>
 
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <img className="h-[80px] w-[80px] object-cover" src={product?.productImage} alt="" />
-                  </td>
-                  <td className="text-3xl">{product?.productQuantity}</td>
-                  <th>
-                    <button className="text-3xl">{product?.saleCount}</button>
-                  </th>
-                  <th className="space-x-2">
-                    <button onClick={() => handleDelete(product?._id)} className="text-3xl btn text-red-400"><FaTrash></FaTrash></button>
+                    </td>
+                    <td>
+                      <img className="h-[80px] w-[80px] object-cover" src={product?.productImage} alt="" />
+                    </td>
+                    <td className="text-3xl">{product?.productQuantity}</td>
+                    <th>
+                      <button className="text-3xl">{product?.saleCount}</button>
+                    </th>
+                    <th className="space-x-2">
+                      <button onClick={() => handleDelete(product?._id)} className="text-3xl btn text-red-400"><FaTrash></FaTrash></button>
 
-                    <button className="text-3xl btn text-sky-500"><FaEdit></FaEdit></button>
-                  </th>
+                      <button className="text-3xl btn text-sky-500"><FaEdit></FaEdit></button>
+                    </th>
 
-                </tr>
-              })
-            }
+                  </tr>
+                })
+              }
+          
+
+
 
 
 
