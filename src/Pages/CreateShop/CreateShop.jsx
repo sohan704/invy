@@ -4,16 +4,17 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 const axiosPublic = UseAxiosPublic();
 const CreateShop = () => {
 
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
+  const axiosSecure = UseAxiosSecure();
   const handleCreateShop = (e) => {
     e.preventDefault();
-
+  
     console.log('Create Shop');
 
     const form = e.target;
@@ -28,7 +29,7 @@ const CreateShop = () => {
     const userInfo = { shopName, shopLogo, shopInfo, shopLocation, shopOwnerEmail, ownerName };
 
     console.log('Here are all the info ', userInfo);
-    axiosPublic.post('/shops', userInfo).then(res => {
+    axiosSecure.post('/shops', userInfo).then(res => {
       if(res.data.insertedId){
         Swal.fire({
           title: "New Shop Created!",

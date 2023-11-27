@@ -11,7 +11,7 @@ const UseShopData = () => {
   const {user,loading} = useContext(AuthContext);
 
 
-  const {refetch, data: shopData = []} = useQuery({
+  const {refetch, data: shopData = [],isPending: isShopLoading} = useQuery({
     queryKey: ['shopData', user?.email],
     enabled: !loading && !!localStorage.getItem('access-token'),
     queryFn: async () => {
@@ -20,7 +20,7 @@ const UseShopData = () => {
     }
   });
 
-  return [refetch, shopData];
+  return [refetch, isShopLoading, shopData];
   
 };
 

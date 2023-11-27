@@ -8,12 +8,13 @@ import { AuthContext } from "../Providers/AuthProvider";
 
 const Dashboard = () => {
 
-  const [, shopData] = UseShopData();
-  const [, loading, isAdmin] = UseAdmin();
+  const [ ,shoploading , shopData] = UseShopData();
+  const [ , loading, isAdmin] = UseAdmin();
   console.log('Check admin ', isAdmin);
   const {logOut} = useContext(AuthContext);
 
-  if (loading) {
+  if (loading && shoploading) {
+ 
     return <span className="loading loading-spinner loading-lg"></span>;
   }
   //  const {shopLogo} = shopData;
