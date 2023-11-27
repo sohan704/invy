@@ -17,6 +17,7 @@ import SalesHistory from "../DashboardPages/SalesHistory";
 import Salesview from "../DashboardPages/Salesview";
 import PrivateRoutes from "./PrivateRoutes";
 import OwnerRoutes from "./OwnerRoutes";
+import Blank from "../Pages/Blank";
 
 
 
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path:'/',
         element:<Home></Home>
+      },
+      {
+        path:'/blank',
+        element: <Blank></Blank>
       },
       {
         path:'/login',
@@ -50,7 +55,7 @@ export const router = createBrowserRouter([
     children:[
       {
         path:'addProduct',
-        element:<OwnerRoutes><AddProduct></AddProduct></OwnerRoutes>
+        element:<AddProduct></AddProduct>
       },
       {
         path:'AllProduct',

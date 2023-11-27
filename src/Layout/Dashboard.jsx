@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import UseShopData from "../Hooks/UseShopData";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,11 +12,12 @@ const Dashboard = () => {
   const [ , loading, isAdmin] = UseAdmin();
   console.log('Check admin ', isAdmin);
   const {logOut} = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  if (loading && shoploading) {
+  // if (loading && shoploading) {
  
-    return <span className="loading loading-spinner loading-lg"></span>;
-  }
+  //   return <span className="loading loading-spinner loading-lg"></span>;
+  // }
   //  const {shopLogo} = shopData;
   //  console.log(shopData);
   //  console.log();
@@ -26,6 +27,8 @@ const Dashboard = () => {
   const handleLogout = () => {
     logOut().then(res => {
       console.log(res);
+      
+      navigate('/login');
     }).catch(error => console.log(error));
   }
 
@@ -53,7 +56,7 @@ const Dashboard = () => {
           <ul className="menu ">
             <li className="btn text-2xl text-neutral  btn-outline  btn-neutral"><NavLink to="/">Home</NavLink></li>
 
-            <li onClick={handleLogout} className="btn text-2xl my-3 text-neutral  btn-outline  btn-neutral"><NavLink to="/login">Logout</NavLink></li>
+            <li><button onClick={handleLogout} className="btn text-2xl my-3 text-neutral  btn-outline  btn-neutral">Logout</button></li>
 
 
           </ul>

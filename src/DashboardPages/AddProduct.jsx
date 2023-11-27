@@ -18,10 +18,10 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   //the shopData
-  const [refetch, shopData] = UseShopData();
+  const [refetch, ,shopData] = UseShopData();
   const [, productData] = UseMyProducts();
   // console.log(shopData);
-
+  console.log('ADD PRODUCT', shopData,'shopData', productData, '<products');
   const shop_id = shopData?._id;
   const shop_name = shopData?.shopName;
   const user_email = shopData?.shopOwnerEmail;

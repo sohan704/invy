@@ -1,5 +1,5 @@
 import { FaGoogle } from 'react-icons/fa';
-import './Login.css'
+// import './Login.css'
 import Navbar from '../Home/Navbar/Navbar';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -33,7 +33,7 @@ const Login = () => {
     
        
      
-      navigate('/dashboard/addProduct');
+      navigate('/blank');
      
     
    
@@ -61,7 +61,7 @@ const Login = () => {
         <div className="hero h-[60vh]">
           <div className="hero-content flex-col">
             <div className="text-center flex-1 lg:text-left">
-              <h1 className="text-5xl my-animate font-semibold text-[#45474B]">Login</h1>
+              <h1 className="text-5xl font-semibold text-[#45474B]">Login</h1>
 
             </div>
             <div className="flex-1 card shrink-0 w-full max-w-sm shadow-2xl card-my-bg">

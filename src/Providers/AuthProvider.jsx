@@ -12,6 +12,8 @@ const AuthProvider = ({ children }) => {
   
   const provider = new GoogleAuthProvider();
   const axiosPublic = UseAxiosPublic();
+  const [isAdminLoading, setIsAdminLoading] = useState(true);
+  const [isOwnerLoading, setIsOwnerLoading] = useState(true);
 
   const [user, setUser] = useState(null);
   
@@ -89,7 +91,8 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     updateUserProfile,
     checkoutProduct, 
-    setCheckoutProduct
+    setCheckoutProduct,
+    
   }
 
   return (

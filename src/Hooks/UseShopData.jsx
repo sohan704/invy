@@ -13,9 +13,9 @@ const UseShopData = () => {
 
   const {refetch, data: shopData = [],isPending: isShopLoading} = useQuery({
     queryKey: ['shopData', user?.email],
-    enabled: !loading && !!localStorage.getItem('access-token'),
+    enabled: !loading && !!localStorage.getItem('access-token') && !!user?.email,
     queryFn: async () => {
-       const res = await axiosSecure.get(`/getShopData/${user?.email}`);
+       const res = await axiosPublic.get(`/getShopData/${user?.email}`);
        return res.data;
     }
   });

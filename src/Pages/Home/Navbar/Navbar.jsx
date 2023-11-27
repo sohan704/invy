@@ -1,47 +1,78 @@
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaPlayCircle, FaTools } from "react-icons/fa";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import UseOwnerVerification from "../../../Hooks/UseOwnerVerification";
 import UseAdmin from "../../../Hooks/UseAdmin";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+// import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 const Navbar = () => {
-  
 
+
+  //  const [testing, setTesting] = useState(null);
   const { user, logOut } = useContext(AuthContext);
-  const [verify] = UseOwnerVerification();
-  const [, loading , isAdmin] = UseAdmin();
+  const [verify, ownerLoading] = UseOwnerVerification();
+  const [, loading, isAdmin] = UseAdmin();
   const navigate = useNavigate();
-
-
-  
-   console.log('is owner from navbar', verify);
-
-
-  if(loading && !!localStorage.getItem('access-token')){
-    return <span className="loading loading-spinner loading-lg"></span>
-  }
-  
-
-   
-  
+  const [users, setUsers] = useState([]);
+  const [ownerInfo, setOwnerInfo] = useState(null);
+  const [adminInfo, setAdminInfo] = useState(null);
+  const axiosPublic = UseAxiosPublic();
 
 
 
-  console.log(isAdmin?.admin);
+
+  useEffect(() => {
+
+    axiosPublic.get('/users').then(res => {
+      setUsers(res.data);
+    })
+
+    axiosPublic.get(`/isOwner/${user?.email}`).then(res => setOwnerInfo(res.data));
+
+    axiosPublic.get(`/checkAdmin/${user?.email}`).then(res => setAdminInfo(res.data));
+  }, [])
+
+  console.log('total users', users);
+  console.log('Owner Info', ownerInfo?.owner);
+  console.log('Admin Info', adminInfo?.admin);
+
+  //  console.log('is owner from navbar', verify);
+
+
+  // if(loading || ownerLoading || !!localStorage.getItem('access-token')){
+  //   return <span className="loading loading-spinner loading-lg"></span>
+  // }
+  // if(loading || ownerLoading ){
+  //   return <span className="loading loading-spinner loading-lg"></span>
+  // }
+
+
+  //  console.log('admin from navbar', isAdmin);
+  // console.log('is owner from navbar', verify);
+
+  // console.log('Response state testing', testing);
+
+
   const handleLogout = () => {
     logOut().then(res => {
       console.log(res);
+     
     }).catch(error => console.log(error));
   }
+  
 
+  // if(ownerInfo?.owner){
+  //   return <Navigate to="/dashboard/addProduct"></Navigate>
+  // }
 
   const links = <>
     <div className="flex flex-col lg:flex-row text-sm lg:text-3xl justify-center items-center gap-5">
       <li><NavLink to='/'>Home</NavLink></li>
-      {!verify?.owner ? isAdmin.admin ? ' ' : <li><NavLink to='/createShop'>Create-Store</NavLink></li> : ' '}
-      {verify?.owner && <li><NavLink to='/dashboard/addProduct'>Dashboard</NavLink></li>}
-      {isAdmin.admin && <li><NavLink to='/dashboard/salesview'>Admin Dashboard</NavLink></li>}
+      {!ownerInfo?.owner ? adminInfo?.admin ? ' ' : <li><NavLink to='/createShop'>Create-Store</NavLink></li> : ' '}
+      {ownerInfo?.owner ? user ? <li><NavLink to='/dashboard/addProduct'>Dashboard</NavLink></li> : ' ' : ''}
+      {adminInfo?.admin ? user ? <li><NavLink to='/dashboard/salesview'>Admin Dashboard</NavLink></li> : ' ' :  ' '}
       <li> <span><FaPlayCircle /> Watch Video </span> </li>
     </div>
   </>
@@ -79,7 +110,7 @@ const Navbar = () => {
           }
 
           {user && <div className="avatar online">
-            <div  className="w-16 rounded-full">
+            <div className="w-16 rounded-full">
               <img src={user?.photoURL} />
             </div>
           </div>}

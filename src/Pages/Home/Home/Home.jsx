@@ -1,4 +1,3 @@
-import UseAdmin from "../../../Hooks/UseAdmin";
 import Banner from "../Banner/Banner";
 import Download from "../Download/Download";
 import Email from "../Email/Email";
@@ -8,19 +7,20 @@ import Navbar from "../Navbar/Navbar";
 import Socials from "../Socials/Socials";
 import Timeline from "../Timeline/Timeline";
 
+
 const Home = () => {
+  
 
-   const [ , ,isAdmin] = UseAdmin();
 
+ // Run this effect whenever shouldReload changes
 
   //  if(loading){
   //   return <span className="loading loading-spinner loading-lg"></span>
   //  }
-   console.log('Check admin ',isAdmin);
 
   return (
     <div>
-      <Navbar></Navbar>
+     <Navbar></Navbar>
       <Banner></Banner>
       <Functions></Functions>
       <Timeline></Timeline>

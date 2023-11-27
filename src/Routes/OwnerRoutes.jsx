@@ -14,7 +14,8 @@ const OwnerRoutes = ({children}) => {
 
 
   if(loading || ownerLoading || adminLoading){
-    return <span className="loading loading-spinner loading-lg"></span>
+    // console.log('user loading',loading, 'owner loading', ownerLoading);
+    return <div className="text-3xl text-red font-bold">Loading here</div>
   }
 
   if(isAdmin.admin){

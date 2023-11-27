@@ -9,7 +9,7 @@ const PrivateRoutes = ({children}) => {
 
   const [verify, owner_loading] = UseOwnerVerification();
  
-  if(loading || owner_loading){
+  if(loading){
     return <span className="loading loading-spinner loading-lg"></span>
   }
 
@@ -20,8 +20,6 @@ const PrivateRoutes = ({children}) => {
   if(user){
     return children;
   }
-
-  
 
   return (
     <Navigate to='/login'></Navigate>

@@ -7,7 +7,7 @@ const UseSales = () => {
 
   const axiosPublic = UseAxiosPublic();
 
-  const [,shopData] = UseShopData();
+  const [,,shopData] = UseShopData();
   
   const { refetch, data: salesData = [] } = useQuery({
     queryKey: ['salesData', shopData?._id],

@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const SalesCount = () => {
-  const [, salesData] = UseSales();
+  const [refetch, salesData] = UseSales();
   console.log(salesData);
 
   const totalSell = salesData?.reduce((accumulator, currentValue) => {
@@ -54,7 +54,7 @@ const SalesCount = () => {
   };
 
 
-
+   refetch();
   return (
     <div>
       <div className="flex flex-col mx-auto lg:flex-row my-5 w-11/12">

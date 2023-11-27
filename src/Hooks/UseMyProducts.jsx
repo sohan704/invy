@@ -10,7 +10,7 @@ const UseMyProducts = () => {
   // const axiosPublic = UseAxiosPublic();
   const axiosSecure = UseAxiosSecure();
   const {user, loading} = useContext(AuthContext);
-  const [,shopData] = UseShopData();
+  const [ , ,shopData] = UseShopData();
 
 //FIX URLLLLLLLLLL BEFORE USING
 
