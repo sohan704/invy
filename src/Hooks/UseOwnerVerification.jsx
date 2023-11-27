@@ -12,6 +12,7 @@ const UseOwnerVerification = () => {
 
  const {data: isOwner, isPending: ownerLoading} = useQuery({
    queryKey: ['isOwner', user?.email],
+   enabled: !!localStorage.getItem('access-token'),
    queryFn: async () => {
       const res = await axiosSecure.get(`/isOwner/${user?.email}`);
       return res.data;

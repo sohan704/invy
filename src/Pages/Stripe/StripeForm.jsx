@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import { AuthContext } from "../../Providers/AuthProvider";
 import UseShopData from "../../Hooks/UseShopData";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const StripeForm = ({ price, limit }) => {
 
@@ -14,10 +15,11 @@ const StripeForm = ({ price, limit }) => {
   const { user } = useContext(AuthContext);
   const [transactionId, setTransactionId] = useState(null);
   const [,shopData] = UseShopData();
+  const axiosSecure = UseAxiosSecure();
 
   useEffect(() => {
     if (price > 0) {
-      axiosPublic.post('/create-payment-intent', { price }).then(res => {
+      axiosSecure.post('/create-payment-intent', { price }).then(res => {
         console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       })
@@ -116,9 +118,9 @@ const StripeForm = ({ price, limit }) => {
 
 
 
-      axiosPublic.patch(`/increaseAdminIncome/${price}`).then(res => console.log(res.data));
+      axiosSecure.patch(`/increaseAdminIncome/${price}`).then(res => console.log(res.data));
 
-      axiosPublic.patch(`/increaseLimit/${shopData?._id}/${limit}`).then(res=> {
+      axiosSecure.patch(`/increaseLimit/${shopData?._id}/${limit}`).then(res=> {
         console.log(res.data);
       })
     }

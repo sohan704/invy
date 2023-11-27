@@ -18,7 +18,7 @@ const Navbar = () => {
    console.log('is owner from navbar', verify);
 
 
-  if(loading){
+  if(loading && !!localStorage.getItem('access-token')){
     return <span className="loading loading-spinner loading-lg"></span>
   }
   

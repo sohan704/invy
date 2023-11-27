@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 import { useNavigate } from 'react-router-dom';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 
 const Register = () => {
 
@@ -12,6 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const axiosPublic = UseAxiosPublic();
+  const axiosSecure = UseAxiosSecure();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const Register = () => {
 
 
 
-        axiosPublic.post('/users', userInfo).then(res => {
+        axiosSecure.post('/users', userInfo).then(res => {
           console.log(res.data);
           if (res.data.insertedId) {
             Swal.fire({
