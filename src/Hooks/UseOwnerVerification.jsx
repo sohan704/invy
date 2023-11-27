@@ -2,21 +2,23 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "./UseAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import UseAxiosSecure from "./UseAxiosSecure";
 
 const UseOwnerVerification = () => {
   
   const axiosPublic = UseAxiosPublic();
+  const axiosSecure = UseAxiosSecure();
   const {user} = useContext(AuthContext);
 
- const {data: isOwner} = useQuery({
+ const {data: isOwner, isPending: ownerLoading} = useQuery({
    queryKey: ['isOwner', user?.email],
    queryFn: async () => {
-      const res = await axiosPublic.get(`/isOwner/${user?.email}`);
+      const res = await axiosSecure.get(`/isOwner/${user?.email}`);
       return res.data;
    }
  });
 
- return [isOwner];
+ return [isOwner, ownerLoading];
 };
 
 export default UseOwnerVerification;

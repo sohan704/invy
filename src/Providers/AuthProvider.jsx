@@ -4,6 +4,7 @@ import auth from "../firebase/firebase.config";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
 
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -25,6 +26,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   }
 
@@ -52,7 +54,7 @@ const AuthProvider = ({ children }) => {
       console.log('Current User', currentUser);
       const userInfo = {email : currentUser?.email};
       setLoading(false);
-
+      console.log(loading);
       if (currentUser) {
         //something
         console.log('Current User', currentUser);

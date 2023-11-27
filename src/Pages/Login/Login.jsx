@@ -1,15 +1,21 @@
 import { FaGoogle } from 'react-icons/fa';
 import './Login.css'
 import Navbar from '../Home/Navbar/Navbar';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
 
   const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
+
+
+ 
+
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,7 +29,14 @@ const Login = () => {
         text: `LOGGED IN`,
         icon: "success"
       });
-     navigate('/');
+
+    
+       
+     
+      navigate('/dashboard/addProduct');
+     
+    
+   
     }).catch(error => {
        console.log(error);
       Swal.fire({
@@ -34,6 +47,8 @@ const Login = () => {
     });
 
   }
+  
+
 
 
   return (

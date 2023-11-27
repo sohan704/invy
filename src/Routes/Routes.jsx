@@ -15,6 +15,8 @@ import Stripepayment from "../Pages/Stripe/Stripepayment";
 import SalesCount from "../DashboardPages/SalesCount";
 import SalesHistory from "../DashboardPages/SalesHistory";
 import Salesview from "../DashboardPages/Salesview";
+import PrivateRoutes from "./PrivateRoutes";
+import OwnerRoutes from "./OwnerRoutes";
 
 
 
@@ -37,7 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path:'/createShop',
-        element:<CreateShop></CreateShop>
+        element: <PrivateRoutes><CreateShop></CreateShop></PrivateRoutes>
       },
 
     ]
@@ -48,7 +50,7 @@ export const router = createBrowserRouter([
     children:[
       {
         path:'addProduct',
-        element:<AddProduct></AddProduct>
+        element:<OwnerRoutes><AddProduct></AddProduct></OwnerRoutes>
       },
       {
         path:'AllProduct',

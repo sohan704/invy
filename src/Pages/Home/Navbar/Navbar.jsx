@@ -1,19 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect} from "react";
 import { FaPlayCircle, FaTools } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import UseOwnerVerification from "../../../Hooks/UseOwnerVerification";
 import UseAdmin from "../../../Hooks/UseAdmin";
 
 const Navbar = () => {
+  
+
   const { user, logOut } = useContext(AuthContext);
   const [verify] = UseOwnerVerification();
   const [, loading , isAdmin] = UseAdmin();
+  const navigate = useNavigate();
+
 
   
-     if(loading){
+   console.log('is owner from navbar', verify);
+
+
+  if(loading){
     return <span className="loading loading-spinner loading-lg"></span>
-   }
+  }
+  
+
+   
+  
+
 
 
   console.log(isAdmin?.admin);
