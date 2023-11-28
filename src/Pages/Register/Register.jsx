@@ -27,7 +27,7 @@ const Register = () => {
     const user = { name, email, password, photo };
 
 
-    const userInfo = {name, email, photo};
+    const userInfo = { name, email, photo };
 
 
     createUser(email, password).then(result => {
@@ -38,7 +38,7 @@ const Register = () => {
 
 
 
-        axiosSecure.post('/users', userInfo).then(res => {
+        axiosPublic.post('/users', userInfo).then(res => {
           console.log(res.data);
           if (res.data.insertedId) {
             Swal.fire({
@@ -46,7 +46,7 @@ const Register = () => {
               text: "NEW USER ADDED!",
               icon: "success"
             });
-            navigate('/');
+            navigate('/blank');
           }
         })
       }).catch(error => console.log(error));

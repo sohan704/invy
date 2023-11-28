@@ -29,7 +29,7 @@ const CreateShop = () => {
     const userInfo = { shopName, shopLogo, shopInfo, shopLocation, shopOwnerEmail, ownerName };
 
     console.log('Here are all the info ', userInfo);
-    axiosSecure.post('/shops', userInfo).then(res => {
+    axiosPublic.post('/shops', userInfo).then(res => {
       if(res.data.insertedId){
         Swal.fire({
           title: "New Shop Created!",

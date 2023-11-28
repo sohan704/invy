@@ -32,6 +32,7 @@ const CheckoutPage = () => {
     doc.text(`Product Name:-  ${checkoutProduct?.productName}`, 10, 95);
     doc.text(`Shop Name:-  ${checkoutProduct?.shop_name}`, 10, 110);
     // doc.save("Invoice.pdf");
+    // doc.save(`${checkoutProduct?.productName} sold at ${formattedDateTime}.pdf`);
   }
 
   const handleGetPaid = () => {
@@ -50,6 +51,7 @@ const CheckoutPage = () => {
         progress: undefined,
         theme: "colored",
       });
+      
       return;
     }
 
@@ -81,6 +83,7 @@ const CheckoutPage = () => {
       console.log(res.data)
     });
   }
+
 
   return (
     <div className="h-screen">

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import UseMyProducts from '../Hooks/UseMyProducts';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+import { NavLink } from 'react-router-dom';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -86,13 +87,13 @@ const AddProduct = () => {
         progress: undefined,
         theme: "colored",
       });
-      return;
+      return <NavLink to='/dashboard/payment'></NavLink>; 
     }
 
-    const res = await axiosSecure.post('/addProduct', productData);
+    const res = await axiosPublic.post('/addProduct', productData);
     console.log('From Add Product', res.data);
 
-    const res2 = await axiosSecure.patch(`/reduceProductLimit/${user?.email}`);
+    const res2 = await axiosPublic.patch(`/reduceProductLimit/${user?.email}`);
     console.log('Reduced the product limit', res2.data);
 
     refetch();

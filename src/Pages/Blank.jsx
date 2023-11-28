@@ -11,9 +11,6 @@ const Blank = () => {
   const [adminInfo, setAdminInfo] = useState(null);
 
   useEffect(() => {
-
-   
-
     axiosPublic.get(`/isOwner/${user?.email}`).then(res => setOwnerInfo(res.data));
 
     axiosPublic.get(`/checkAdmin/${user?.email}`).then(res => setAdminInfo(res.data));
@@ -23,11 +20,13 @@ const Blank = () => {
     return <Navigate to="/dashboard/addProduct"></Navigate>
   }
 
-  return (
-    <div>
-      
-    </div>
-  );
+  if(adminInfo?.admin){
+    return <Navigate to="/dashboard/salesview"></Navigate>
+  }
+
+  if( (adminInfo !== null)  && (ownerInfo !== null) && !adminInfo?.admin && !ownerInfo?.owner){
+    return <Navigate to="/"></Navigate>
+  }
 };
 
 export default Blank;

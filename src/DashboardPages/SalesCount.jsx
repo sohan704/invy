@@ -60,7 +60,7 @@ const SalesCount = () => {
       <div className="flex flex-col mx-auto lg:flex-row my-5 w-11/12">
         <div className="grid text-2xl py-4 flex-grow h-40 card bg-white border-2 border-gray-300 rounded-box place-items-center">
           <div className="text-neutral">Total Sell Count : <span className="text-gray-900 text-3xl">{salesData?.length}</span></div>
-          <div className="text-neutral">Total Sell : <span className="text-gray-900 text-3xl">{totalSell} $</span></div>
+          <div className="text-neutral">Total Sell : <span className="text-gray-900 text-3xl">{totalSell.toFixed(2)} $</span></div>
         </div>
         <div className="divider lg:divider-horizontal"></div>
         <div className="grid text-2xl py-4 flex-grow h-40 card bg-white border-2 border-gray-300 rounded-box place-items-center">

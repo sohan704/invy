@@ -42,6 +42,9 @@ const Dashboard = () => {
           </div>
           {isAdmin?.admin ? <ul className="menu  text-2xl">
             <li><NavLink to="/dashboard/salesview">Sales History</NavLink></li>
+            <li><NavLink to="/dashboard/manageShop">ManageShop</NavLink></li>
+            <li><NavLink to="/dashboard/usersSection">Users Section</NavLink></li>
+           
           </ul> : <ul className="menu  text-2xl">
             <li><NavLink to="/dashboard/addProduct">Add Product</NavLink></li>
             <li><NavLink to="/dashboard/allProduct">All Product</NavLink></li>

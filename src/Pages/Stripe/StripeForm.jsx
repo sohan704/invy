@@ -14,12 +14,12 @@ const StripeForm = ({ price, limit }) => {
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useContext(AuthContext);
   const [transactionId, setTransactionId] = useState(null);
-  const [,shopData] = UseShopData();
+  const [,,shopData] = UseShopData();
   const axiosSecure = UseAxiosSecure();
-
+  
   useEffect(() => {
     if (price > 0) {
-      axiosSecure.post('/create-payment-intent', { price }).then(res => {
+      axiosPublic.post('/create-payment-intent', { price }).then(res => {
         console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       })
@@ -118,10 +118,10 @@ const StripeForm = ({ price, limit }) => {
 
 
 
-      axiosSecure.patch(`/increaseAdminIncome/${price}`).then(res => console.log(res.data));
-
-      axiosSecure.patch(`/increaseLimit/${shopData?._id}/${limit}`).then(res=> {
-        console.log(res.data);
+      axiosPublic.patch(`/increaseAdminIncome/${price}`).then(res => console.log(res.data)).catch(error=> console.log(error))
+     console.log('shop date id', shopData?._id);
+      axiosPublic.patch(`/increaseLimit/${shopData?._id}/${limit}`).then(res=> {
+        console.log(res.data).catch(error=> console.log(error));
       })
     }
 

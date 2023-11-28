@@ -4,11 +4,12 @@ import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import UseShopData from "./UseShopData";
 import UseAxiosSecure from "./UseAxiosSecure";
+import UseAxiosPublic from "./UseAxiosPublic";
 
 const UseMyProducts = () => {
 
   // const axiosPublic = UseAxiosPublic();
-  const axiosSecure = UseAxiosSecure();
+  const axiosPublic = UseAxiosPublic();
   const {user, loading} = useContext(AuthContext);
   const [ , ,shopData] = UseShopData();
 
@@ -18,7 +19,7 @@ const UseMyProducts = () => {
     queryKey: ['productData', shopData?._id],
     enabled: !loading && !!localStorage.getItem('access-token'),
     queryFn: async () => {
-       const res = await axiosSecure.get(`/getProductData/${shopData?._id}`);
+       const res = await axiosPublic.get(`/getProductData/${shopData?._id}`);
        return res.data;
     }
   });

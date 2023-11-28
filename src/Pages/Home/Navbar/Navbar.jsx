@@ -32,9 +32,9 @@ const Navbar = () => {
     axiosPublic.get(`/isOwner/${user?.email}`).then(res => setOwnerInfo(res.data));
 
     axiosPublic.get(`/checkAdmin/${user?.email}`).then(res => setAdminInfo(res.data));
-  }, [])
+  }, [user])
 
-  console.log('total users', users);
+
   console.log('Owner Info', ownerInfo?.owner);
   console.log('Admin Info', adminInfo?.admin);
 
@@ -62,7 +62,8 @@ const Navbar = () => {
     }).catch(error => console.log(error));
   }
   
-
+    
+  console.log('admin saheb',adminInfo?.admin);
   // if(ownerInfo?.owner){
   //   return <Navigate to="/dashboard/addProduct"></Navigate>
   // }
@@ -106,7 +107,7 @@ const Navbar = () => {
         <div className="navbar-end gap-3">
 
           {
-            user && <div className="text-3xl">{user?.displayName}</div>
+            user && <div className="text-2xl">{user?.displayName}</div>
           }
 
           {user && <div className="avatar online">

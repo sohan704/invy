@@ -18,6 +18,10 @@ import Salesview from "../DashboardPages/Salesview";
 import PrivateRoutes from "./PrivateRoutes";
 import OwnerRoutes from "./OwnerRoutes";
 import Blank from "../Pages/Blank";
+import Manageshop from "../DashboardPages/Manageshop";
+import UsersSection from "../DashboardPages/UsersSection";
+import TestEmail from "../DashboardPages/TestEmail";
+import CartCheckout from "../DashboardPages/CartCheckout";
 
 
 
@@ -92,6 +96,22 @@ export const router = createBrowserRouter([
       {
         path:'salesview',
         element:<Salesview></Salesview>
+      },
+      {
+        path:'manageShop',
+        element:<Manageshop></Manageshop>
+      },
+      {
+        path:'usersSection',
+        element: <UsersSection></UsersSection>
+      },
+      {
+        path:'sendEmails',
+        element:<TestEmail></TestEmail>
+      },
+      {
+        path:'cartCheckout',
+        element: <CartCheckout></CartCheckout>
       }
 
       
