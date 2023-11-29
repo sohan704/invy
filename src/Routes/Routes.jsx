@@ -26,6 +26,7 @@ import Redirect from "./Redirect";
 import NotAdmin from "../Pages/NotAdmin";
 import Redirect2 from "./Redirect2";
 import NotOwner from "../Pages/NotOwner";
+import Error from "../Pages/Error";
 
 
 
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <Error></Error>,
     children: [
       {
         path:'/',
@@ -68,6 +70,7 @@ export const router = createBrowserRouter([
   {
     path:'dashboard',
     element:<Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
     children:[
       {
         path:'addProduct',

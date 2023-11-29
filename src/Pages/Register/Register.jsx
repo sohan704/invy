@@ -65,7 +65,6 @@ const Register = () => {
     <div className='h-[120vh] my-gradient'>
       <Navbar></Navbar>
       <div className='flex justify-center items-center h-[100vh]'>
-
         <div className="hero h-[60vh]">
           <div className="hero-content flex-col">
             <div className="text-center flex-1 lg:text-left">

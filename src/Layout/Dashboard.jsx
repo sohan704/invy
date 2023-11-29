@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UseAdmin from "../Hooks/UseAdmin";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import Footer from "../Pages/Home/Footer/Footer";
 
 const Dashboard = () => {
 
@@ -69,6 +70,7 @@ const Dashboard = () => {
         </div>
       </div>
       <ToastContainer />
+      <Footer></Footer>
     </>
   );
 };
