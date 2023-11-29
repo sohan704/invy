@@ -3,6 +3,7 @@ import UseMyProducts from "../Hooks/UseMyProducts";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const ProductCollection = () => {
 
@@ -30,18 +31,29 @@ const ProductCollection = () => {
 
   const addToMainCart = (theProduct) => {
     // Assuming you have your cart data as an array
-    const cartData = [
-      { id: 1, name: 'Product 1', price: 10 },
-      { id: 2, name: 'Product 2', price: 20 },
-      // ... other items
-    ];
+
+    toast.success('Product is being updated on the server! Thanks for your patience!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+    // const cartData = [
+    //   { id: 1, name: 'Product 1', price: 10 },
+    //   { id: 2, name: 'Product 2', price: 20 },
+    //   // ... other items
+    // ];
     // mainCart.push(theProduct);
     const existingCartData = JSON.parse(localStorage.getItem('cart')) || [];
     const mergedCartData = [...existingCartData, theProduct];
     localStorage.setItem('cart', JSON.stringify(mergedCartData));
   }
 
-  const handlepay = () =>{
+  const handlepay = () => {
     navigate('/dashboard/cartCheckout');
   }
 
@@ -49,9 +61,9 @@ const ProductCollection = () => {
 
   return (
     <div>
-       <Helmet>
-      <title>Invy | Product Collection</title>
-    </Helmet>
+      <Helmet>
+        <title>Invy | Product Collection</title>
+      </Helmet>
       <div className="h-screen max-w-screen-lg">
 
         <div className="flex justify-center gap-2 items-center py-5 border-b-2 border-gray-700">
@@ -114,7 +126,7 @@ const ProductCollection = () => {
 
                       </th>
                       <th className="space-x-2">
-                        <button onClick={()=> {addToMainCart(product)}} className="btn btn-neutral">Add to Cart</button>
+                        <button onClick={() => { addToMainCart(product) }} className="btn btn-neutral">Add to Cart</button>
                       </th>
 
                     </tr>
@@ -147,7 +159,9 @@ const ProductCollection = () => {
 
                 </th>
                 <th className="space-x-2">
-                  <button className="btn btn-neutral">Add to Cart</button>
+                  <button
+                    onClick={() => { addToMainCart(searchResult) }}
+                    className="btn btn-neutral">Add to Cart</button>
                 </th>
 
               </tr>}
