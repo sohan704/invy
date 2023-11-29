@@ -32,7 +32,7 @@ const ProductCollection = () => {
   const addToMainCart = (theProduct) => {
     // Assuming you have your cart data as an array
 
-    toast.success('Product is being updated on the server! Thanks for your patience!', {
+    toast.success('ADDED!', {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,

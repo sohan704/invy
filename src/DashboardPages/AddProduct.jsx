@@ -20,10 +20,10 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   //the shopData
-  const [refetch, ,shopData] = UseShopData();
+  const [refetch, , shopData] = UseShopData();
   const [, productData] = UseMyProducts();
   // console.log(shopData);
-  console.log('ADD PRODUCT', shopData,'shopData', productData, '<products');
+  console.log('ADD PRODUCT', shopData, 'shopData', productData, '<products');
   const shop_id = shopData?._id;
   const shop_name = shopData?.shopName;
   const user_email = shopData?.shopOwnerEmail;
@@ -39,6 +39,11 @@ const AddProduct = () => {
   // console.log(formattedDate);
 
 
+  
+
+
+
+
 
   const axiosPublic = UseAxiosPublic();
   const axiosSecure = UseAxiosSecure();
@@ -46,7 +51,7 @@ const AddProduct = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     // console.log(data);
- 
+
     const imageFile = { image: data.productImage[0] };
     //getting the image url
     const imgRes = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -88,7 +93,7 @@ const AddProduct = () => {
         progress: undefined,
         theme: "colored",
       });
-      return <NavLink to='/dashboard/payment'></NavLink>; 
+      return <NavLink to='/dashboard/payment'></NavLink>;
     }
 
     const res = await axiosPublic.post('/addProduct', productData);
@@ -116,9 +121,9 @@ const AddProduct = () => {
 
   return (
     <>
-    <Helmet>
-      <title>Invy | Add Product</title>
-    </Helmet>
+      <Helmet>
+        <title>Invy | Add Product</title>
+      </Helmet>
       <div className='h-screen overflow-hidden'>
 
 
@@ -132,7 +137,7 @@ const AddProduct = () => {
             </div>
           </div> : ' '}
 
-          {shopData?.totalProductAdded ? '': <div className='flex mt-3 text-3xl flex-col items-center'>
+          {shopData?.totalProductAdded ? '' : <div className='flex mt-3 text-3xl flex-col items-center'>
             No Product Yet
             <div className='my-5'>
               <button onClick={() => document.getElementById('my_modal_1').showModal()} className='btn btn-neutral btn-lg'>Add Product</button>
@@ -217,7 +222,7 @@ const AddProduct = () => {
                   <label className="label">
                     <span className="label-text text-2xl">Choose Product Image</span>
                   </label>
-                  <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required/>
+                  <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required />
                 </div>
 
                 <br />

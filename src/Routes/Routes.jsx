@@ -27,6 +27,7 @@ import NotAdmin from "../Pages/NotAdmin";
 import Redirect2 from "./Redirect2";
 import NotOwner from "../Pages/NotOwner";
 import Error from "../Pages/Error";
+import RootDash from "../Pages/RootDash";
 
 
 
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
     element:<Dashboard></Dashboard>,
     errorElement: <Error></Error>,
     children:[
+      {
+         path:'',
+         element: <RootDash></RootDash>
+      },
       {
         path:'addProduct',
         element:<Redirect><AddProduct></AddProduct></Redirect>

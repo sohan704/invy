@@ -9,14 +9,14 @@ import Footer from "../Pages/Home/Footer/Footer";
 
 const Dashboard = () => {
 
-  const [ ,shoploading , shopData] = UseShopData();
-  const [ , loading, isAdmin] = UseAdmin();
+  const [, shoploading, shopData] = UseShopData();
+  const [, loading, isAdmin] = UseAdmin();
   console.log('Check admin ', isAdmin);
-  const {logOut} = useContext(AuthContext);
+  const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // if (loading && shoploading) {
- 
+
   //   return <span className="loading loading-spinner loading-lg"></span>;
   // }
   //  const {shopLogo} = shopData;
@@ -28,24 +28,24 @@ const Dashboard = () => {
   const handleLogout = () => {
     logOut().then(res => {
       console.log(res);
-      
+
       navigate('/login');
     }).catch(error => console.log(error));
   }
 
   return (
     <>
-      <div className="flex h-[120vh] font-playFair text-[#495E57] bg-[#F5F7F8]">
+      <div className="flex h-[150vh] font-playFair text-[#495E57] bg-[#F5F7F8]">
         <div className="w-64 min-h-full bg-[#F5F7F8] border-gray-700 border-r-4">
           <div className="flex justify-center items-center py-3">
             {isAdmin.admin ? " " : <img className="h-[100px] w-[100px] object-cover"
-              src={shopData?.shopLogo} alt="" />}
+              src={shopData?.shopLogo} alt="dashboard" />}
           </div>
           {isAdmin?.admin ? <ul className="menu  text-2xl">
             <li><NavLink to="/dashboard/salesview">Sales History</NavLink></li>
             <li><NavLink to="/dashboard/manageShop">ManageShop</NavLink></li>
             <li><NavLink to="/dashboard/usersSection">Users Section</NavLink></li>
-           
+
           </ul> : <ul className="menu  text-2xl">
             <li><NavLink to="/dashboard/addProduct">Add Product</NavLink></li>
             <li><NavLink to="/dashboard/allProduct">All Product</NavLink></li>
@@ -70,7 +70,9 @@ const Dashboard = () => {
         </div>
       </div>
       <ToastContainer />
-      <Footer></Footer>
+      <div className="mt-10">
+        <Footer></Footer>
+      </div>
     </>
   );
 };
