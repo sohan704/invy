@@ -1,38 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { NavLink, Navigate } from "react-router-dom";
 import UseOwnerVerification from "../Hooks/UseOwnerVerification";
-import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
 
 const Redirect = ({children}) => {
   const {user, loading} = useContext(AuthContext);
-  const [adminInfo, setAdminInfo] = useState(null);
-  const axiosPublic = UseAxiosPublic();
+
   const [verify, owner_loading] = UseOwnerVerification();
  console.log(verify);
- const [ownerInfo, setOwnerInfo] = useState(null);
-  
- useEffect(() => {
-  axiosPublic.get(`/isOwner/${user?.email}`).then(res => setOwnerInfo(res.data));
+  if(loading || owner_loading){
+    return <span className="loading loading-spinner loading-lg"></span>
+  }
 
-  // axiosPublic.get(`/checkAdmin/${user?.email}`).then(res => setAdminInfo(res.data));
-}, [])
-
-
-
-
-  
-
-  if(ownerInfo?.owner){
+  if(verify?.owner){
     return children;
   }
 
-  if( (ownerInfo !== null) && !ownerInfo?.owner){
+  if(user){
     return <Navigate to='/notOwner'></Navigate>;
   }
 
-  
+  return (
+    <Navigate to='/'></Navigate>
+  );
 };
 
 export default Redirect;

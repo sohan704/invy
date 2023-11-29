@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../Home/Navbar/Navbar";
 import { AuthContext } from "../../Providers/AuthProvider";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
@@ -12,6 +12,7 @@ const CreateShop = () => {
 
   const navigate = useNavigate();
   const axiosSecure = UseAxiosSecure();
+  
   const handleCreateShop = (e) => {
     e.preventDefault();
   

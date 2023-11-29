@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import jsPDF from "jspdf";
+import { Helmet } from "react-helmet-async";
 const CartCheckout = () => {
 
   const axiosPublic = UseAxiosPublic();
@@ -54,6 +55,9 @@ const CartCheckout = () => {
 
   return (
     <div>
+       <Helmet>
+      <title>Invy | Cart Checkout</title>
+    </Helmet>
       <div className="my-10 text-3xl text-black text-center">
         Total Products in Cart : {retrievedCartData?.length || '0'}
         <div className="flex justify-center my-5">

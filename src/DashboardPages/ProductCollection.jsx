@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import UseMyProducts from "../Hooks/UseMyProducts";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const ProductCollection = () => {
 
@@ -48,6 +49,9 @@ const ProductCollection = () => {
 
   return (
     <div>
+       <Helmet>
+      <title>Invy | Product Collection</title>
+    </Helmet>
       <div className="h-screen max-w-screen-lg">
 
         <div className="flex justify-center gap-2 items-center py-5 border-b-2 border-gray-700">

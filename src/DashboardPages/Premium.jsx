@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './Premium.css';
+import { Helmet } from 'react-helmet-async';
 
 const Premium = () => {
 
@@ -22,7 +23,9 @@ const Premium = () => {
 
   return (
     <div className="h-screen">
-
+       <Helmet>
+      <title>Invy | Premium</title>
+    </Helmet>
       <div className=" text-2xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-500 to-gray-400 text-center my-10 ">
         Subscription Plan
       </div>

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
 import Download from "../Download/Download";
 import Email from "../Email/Email";
@@ -9,10 +10,10 @@ import Timeline from "../Timeline/Timeline";
 
 
 const Home = () => {
-  
 
 
- // Run this effect whenever shouldReload changes
+
+  // Run this effect whenever shouldReload changes
 
   //  if(loading){
   //   return <span className="loading loading-spinner loading-lg"></span>
@@ -20,7 +21,10 @@ const Home = () => {
 
   return (
     <div>
-     <Navbar></Navbar>
+      <Helmet>
+        <title>Invy | Home</title>
+      </Helmet>
+      <Navbar></Navbar>
       <Banner></Banner>
       <Functions></Functions>
       <Timeline></Timeline>

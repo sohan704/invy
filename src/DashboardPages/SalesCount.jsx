@@ -1,5 +1,6 @@
 import UseSales from "../Hooks/UseSales";
 import React, { useCallback, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const SalesCount = () => {
@@ -54,9 +55,12 @@ const SalesCount = () => {
   };
 
 
-   refetch();
+  refetch();
   return (
     <div>
+      <Helmet>
+        <title>Invy | Sales Count</title>
+      </Helmet>
       <div className="flex flex-col mx-auto lg:flex-row my-5 w-11/12">
         <div className="grid text-2xl py-4 flex-grow h-40 card bg-white border-2 border-gray-300 rounded-box place-items-center">
           <div className="text-neutral">Total Sell Count : <span className="text-gray-900 text-3xl">{salesData?.length}</span></div>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UseShopData from "../Hooks/UseShopData";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -70,10 +71,20 @@ const AllProducts = () => {
       productImage: imgRes.data.data.display_url
     };
     console.log(productData);
+    toast.success('Product is being updated on the server! Thanks for your patience!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
     axiosPublic.patch(`updateProduct/${currentId}`, productData)
       .then(res => {
-        toast.success('Product is being updated on the server! Thanks for your patience!', {
+        toast.success('Product has been updated! please refresh!', {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -116,6 +127,9 @@ const AllProducts = () => {
 
   return (
     <div className="h-screen">
+       <Helmet>
+      <title>Invy | All Product</title>
+       </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -260,7 +274,7 @@ const AllProducts = () => {
               <label className="label">
                 <span className="label-text text-2xl">Choose Product Image</span>
               </label>
-              <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required />
+              <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required/>
             </div>
 
             <br />

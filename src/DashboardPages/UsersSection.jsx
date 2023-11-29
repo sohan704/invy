@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 // import Salesview from "./Salesview";
 import emailjs from '@emailjs/browser';
+import { Helmet } from "react-helmet-async";
 
 const UsersSection = () => {
   const [allUsers, setAllUsers] = useState(null);
@@ -32,7 +33,7 @@ const UsersSection = () => {
   useEffect(() => {
     fetchUsers();
   }, [])
-  
+
   const handleButtonClick = (number) => {
     setButtonNumber(number);
   };
@@ -49,7 +50,7 @@ const UsersSection = () => {
     }
     return buttons;
   };
-  const c_allUsers = allUsers?.slice((buttonNumber-1)*5,buttonNumber*5);
+  const c_allUsers = allUsers?.slice((buttonNumber - 1) * 5, buttonNumber * 5);
 
   const sendEmail = (theEmail) => {
 
@@ -70,6 +71,9 @@ const UsersSection = () => {
 
   return (
     <div className="h-screen">
+      <Helmet>
+        <title>Invy | Admin | All Users</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

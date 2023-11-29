@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Manageshop = () => {
   const axiosPublic = UseAxiosPublic();
@@ -24,6 +25,9 @@ const Manageshop = () => {
   console.log(allShops);
   return (
     <div className="h-screen">
+       <Helmet>
+      <title>Invy | Admin | Manageshop</title>
+       </Helmet>
       <div className="overflow-x-auto">
         <table className="table mb-28">
           {/* head */}

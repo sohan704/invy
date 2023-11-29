@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import UseMyProducts from '../Hooks/UseMyProducts';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import { NavLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -45,7 +46,7 @@ const AddProduct = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     // console.log(data);
-    document.getElementById('closeButton').click();
+ 
     const imageFile = { image: data.productImage[0] };
     //getting the image url
     const imgRes = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -105,6 +106,9 @@ const AddProduct = () => {
         icon: "success"
       });
     }
+
+
+    document.getElementById('closeButton').click();
   }
 
 
@@ -112,6 +116,9 @@ const AddProduct = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Invy | Add Product</title>
+    </Helmet>
       <div className='h-screen overflow-hidden'>
 
 
@@ -210,7 +217,7 @@ const AddProduct = () => {
                   <label className="label">
                     <span className="label-text text-2xl">Choose Product Image</span>
                   </label>
-                  <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required />
+                  <input {...register("productImage")} type="file" className="file-input file-input-bordered file-input-lg w-full max-w-xs" required/>
                 </div>
 
                 <br />

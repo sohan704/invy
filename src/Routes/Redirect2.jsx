@@ -1,38 +1,33 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { NavLink, Navigate } from "react-router-dom";
 import UseOwnerVerification from "../Hooks/UseOwnerVerification";
-import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import UseAdmin from "../Hooks/UseAdmin";
 
 
 const Redirect2 = ({children}) => {
   const {user, loading} = useContext(AuthContext);
-  const [adminInfo, setAdminInfo] = useState(null);
-  const axiosPublic = UseAxiosPublic();
-  const [verify, owner_loading] = UseOwnerVerification();
- console.log(verify);
 
-  
- useEffect(() => {
+  // const [verify, owner_loading] = UseOwnerVerification();
+  const [refetch, isAdminLoading, isAdmin] = UseAdmin();
 
+//  console.log(verify);
 
-  axiosPublic.get(`/checkAdmin/${user?.email}`).then(res => setAdminInfo(res.data));
-}, [])
+  if(loading || isAdminLoading){
+    return <span className="loading loading-spinner loading-lg"></span>
+  }
 
-
-
-
-  
-
-  if(adminInfo?.admin){
+  if(isAdmin.admin){
     return children;
   }
 
-  if( (adminInfo !== null) && !adminInfo?.admin){
+  if(user){
     return <Navigate to='/notAdmin'></Navigate>;
   }
 
-  
+  return (
+    <Navigate to='/'></Navigate>
+  );
 };
 
 export default Redirect2;

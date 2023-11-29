@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UseSales from "../Hooks/UseSales";
+import { Helmet } from "react-helmet-async";
 
 const SalesHistory = () => {
 
@@ -31,8 +32,8 @@ const SalesHistory = () => {
   const totalPages = calculateTotalPages(salesData);
 
 
-  const sortedProducts = sortBySoldDate(salesData).slice((buttonNumber-1)*5,buttonNumber*5);
-  
+  const sortedProducts = sortBySoldDate(salesData).slice((buttonNumber - 1) * 5, buttonNumber * 5);
+
 
 
 
@@ -52,11 +53,14 @@ const SalesHistory = () => {
     return buttons;
   };
 
-  console.log('btn num ',buttonNumber);
+  console.log('btn num ', buttonNumber);
 
   return (
 
     <div className="h-screen">
+      <Helmet>
+        <title>Invy | Sales History</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

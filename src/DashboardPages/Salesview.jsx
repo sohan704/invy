@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import UseAdmin from "../Hooks/UseAdmin";
 import UseAdminIncome from "../Hooks/UseAdminIncome";
 import UseAllProducts from "../Hooks/UseAllProducts";
@@ -15,12 +16,12 @@ const Salesview = () => {
   if (isLoading || isSalesLoading || productLoading || incomeLoading) {
     return <span className="loading loading-spinner loading-lg"></span>
   }
-  
+
 
   if (isLoading || isSalesLoading || productLoading || incomeLoading) {
     return <span className="loading loading-spinner loading-lg"></span>
   }
-  
+
 
   console.log('all sales', allSales);
   console.log('admin verify', isAdminVerify);
@@ -74,6 +75,9 @@ const Salesview = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Invy | Admin | Sales View</title>
+      </Helmet>
       <div className="flex flex-col mx-auto lg:flex-row my-5 w-11/12">
         <div className="grid text-2xl py-4 flex-grow h-40 card bg-white border-2 border-gray-300 rounded-box place-items-center">
           <div className="text-neutral">Total Sell Count : <span className="text-gray-900 text-3xl">{allSales?.length}</span></div>
