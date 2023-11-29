@@ -8,6 +8,7 @@ const UsersSection = () => {
   const [message, setMessage] = useState('');
   // const [toEmail, setToEmail] = useState('');
   const [toEmail, setToEmail] = useState('');
+  const [buttonNumber, setButtonNumber] = useState(1);
   const axiosPublic = UseAxiosPublic();
   const fetchUsers = async () => {
     const res = await axiosPublic.get('/users');
@@ -15,21 +16,50 @@ const UsersSection = () => {
   }
   //  Salesview
 
+  const calculateTotalPages = (data) => {
+    const remainder = data?.length % 5;
+
+    if (remainder === 0) {
+      const pages = (data?.length / 5);
+      return pages;
+    } else {
+      const pages = parseInt(data?.length / 5) + 1;
+      return pages;
+
+    }
+  }
+
   useEffect(() => {
     fetchUsers();
   }, [])
+  
+  const handleButtonClick = (number) => {
+    setButtonNumber(number);
+  };
 
-
+  const totalPages = calculateTotalPages(allUsers);
+  const renderButtons = () => {
+    const buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <button className="btn btn-lg mx-3 text-3xl btn-neutral" key={i} onClick={() => handleButtonClick(i)}>
+          {i}
+        </button>
+      );
+    }
+    return buttons;
+  };
+  const c_allUsers = allUsers?.slice((buttonNumber-1)*5,buttonNumber*5);
 
   const sendEmail = (theEmail) => {
 
 
     // Your EmailJS service ID, template ID, and user ID
 
-    const emailInfo = {theEmail, message};
+    const emailInfo = { theEmail, message };
 
-    axiosPublic.post('/promoEmail',emailInfo).then(res => console.log(res.data));
-  
+    axiosPublic.post('/promoEmail', emailInfo).then(res => console.log(res.data));
+
 
     document.getElementById('closeButton').click();
   };
@@ -61,7 +91,7 @@ const UsersSection = () => {
 
 
             {
-              allUsers && allUsers?.map((product, idx) => {
+              c_allUsers && c_allUsers?.map((product, idx) => {
 
                 return <tr key={idx + 1} className="border-b-2 border-gray-400">
                   <th>
@@ -109,6 +139,12 @@ const UsersSection = () => {
 
 
         </table>
+      </div>
+
+      <div className="flex justify-center my-10">
+        <div>
+          {renderButtons()}
+        </div>
       </div>
 
       <dialog id="my_modal_1" className="modal ">

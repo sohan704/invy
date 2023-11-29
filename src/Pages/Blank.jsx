@@ -25,7 +25,7 @@ const Blank = () => {
   }
 
   if( (adminInfo !== null)  && (ownerInfo !== null) && !adminInfo?.admin && !ownerInfo?.owner){
-    return <Navigate to="/"></Navigate>
+    return <Navigate to="/createShop"></Navigate>
   }
 };
 

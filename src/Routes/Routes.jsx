@@ -22,6 +22,10 @@ import Manageshop from "../DashboardPages/Manageshop";
 import UsersSection from "../DashboardPages/UsersSection";
 import TestEmail from "../DashboardPages/TestEmail";
 import CartCheckout from "../DashboardPages/CartCheckout";
+import Redirect from "./Redirect";
+import NotAdmin from "../Pages/NotAdmin";
+import Redirect2 from "./Redirect2";
+import NotOwner from "../Pages/NotOwner";
 
 
 
@@ -50,6 +54,14 @@ export const router = createBrowserRouter([
         path:'/createShop',
         element: <PrivateRoutes><CreateShop></CreateShop></PrivateRoutes>
       },
+      {
+        path:'/notAdmin',
+        element: <NotAdmin></NotAdmin>
+      },
+      {
+        path:'/notOwner',
+        element: <NotOwner></NotOwner>
+      }
 
     ]
   },
@@ -59,19 +71,19 @@ export const router = createBrowserRouter([
     children:[
       {
         path:'addProduct',
-        element:<AddProduct></AddProduct>
+        element:<Redirect><AddProduct></AddProduct></Redirect>
       },
       {
         path:'AllProduct',
-        element:<AllProducts></AllProducts>
+        element:<Redirect><AllProducts></AllProducts></Redirect>
       },
       {
         path:'updateProduct',
-        element:<UpdateProduct></UpdateProduct>
+        element:<Redirect><UpdateProduct></UpdateProduct></Redirect>
       },
       {
         path:'productCollection',
-        element: <ProductCollection></ProductCollection>,
+        element: <Redirect><ProductCollection></ProductCollection></Redirect>,
       },
       {
         path:'checkout/:id',
@@ -79,39 +91,39 @@ export const router = createBrowserRouter([
       },
       {
         path:'payment',
-        element: <Premium></Premium>,
+        element: <Redirect><Premium></Premium></Redirect>,
       },
       {
         path:'salesCount',
-        element: <SalesCount></SalesCount>,
+        element: <Redirect><SalesCount></SalesCount></Redirect>,
       },
       {
         path:'payment/stripepayment/:price/:limit',
-        element:<Stripepayment></Stripepayment>
+        element:<Redirect><Stripepayment></Stripepayment></Redirect>
       },
       {
         path:'salesHistory',
-        element: <SalesHistory></SalesHistory>,
+        element: <Redirect><SalesHistory></SalesHistory></Redirect>,
       },
       {
         path:'salesview',
-        element:<Salesview></Salesview>
+        element:<Redirect2><Salesview></Salesview></Redirect2>
       },
       {
         path:'manageShop',
-        element:<Manageshop></Manageshop>
+        element:<Redirect2><Manageshop></Manageshop></Redirect2>
       },
       {
         path:'usersSection',
-        element: <UsersSection></UsersSection>
+        element: <Redirect2><UsersSection></UsersSection></Redirect2>
       },
       {
         path:'sendEmails',
-        element:<TestEmail></TestEmail>
+        element:<Redirect><TestEmail></TestEmail></Redirect>
       },
       {
         path:'cartCheckout',
-        element: <CartCheckout></CartCheckout>
+        element: <Redirect><CartCheckout></CartCheckout></Redirect>
       }
 
       

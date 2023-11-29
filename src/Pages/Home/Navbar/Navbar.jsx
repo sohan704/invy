@@ -53,7 +53,10 @@ const Navbar = () => {
   // console.log('is owner from navbar', verify);
 
   // console.log('Response state testing', testing);
-
+  const openLinkInNewWindow = () => {
+    // Replace 'https://www.example.com' with your desired URL
+    window.open('https://www.youtube.com', '_blank');
+  };
 
   const handleLogout = () => {
     logOut().then(res => {
@@ -74,7 +77,13 @@ const Navbar = () => {
       {!ownerInfo?.owner ? adminInfo?.admin ? ' ' : <li><NavLink to='/createShop'>Create-Store</NavLink></li> : ' '}
       {ownerInfo?.owner ? user ? <li><NavLink to='/dashboard/addProduct'>Dashboard</NavLink></li> : ' ' : ''}
       {adminInfo?.admin ? user ? <li><NavLink to='/dashboard/salesview'>Admin Dashboard</NavLink></li> : ' ' :  ' '}
-      <li> <span><FaPlayCircle /> Watch Video </span> </li>
+      {/* <li> <span><FaPlayCircle /> Watch Video </span> </li> */}
+      <li onClick={openLinkInNewWindow}>
+      <span>
+        <FaPlayCircle /> Watch Video
+      </span>
+    </li>
+      {/* <a href="https://www.example.com" target="_blank">Click here to open in a new window</a> */}
     </div>
   </>
 

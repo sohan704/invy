@@ -4,7 +4,7 @@ import './Register.css';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 
 const Register = () => {
@@ -100,7 +100,9 @@ const Register = () => {
                   <input name='photo' type="text" placeholder="Photo URL" className="input input-bordered text-2xl bg-[#F5F7F8]" required />
 
                 </div>
-
+                <div className='text-xl text-black font-semibold'>
+                  <p>Already have an account? <NavLink to='/login'><span className='underline'>Login</span></NavLink></p>
+                 </div>
                 <div className="form-control mt-6">
                   <button className="btn border-none text-2xl bg-[#45474B] text-[#F5F7F8]">Register</button>
                 </div>
