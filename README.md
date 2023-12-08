@@ -4,7 +4,7 @@
 A comprehensive Inventory Management System designed for shops to manage products, discounts, categories, sales, and more. The system supports multiple user roles, providing distinct features and authorization levels for System Admin, Shop Manager, and Logged-User.
 
 ## Live Link
-[Click Here](<Your Live Site Link>)
+[Click Here](https://invy-ffcdc.web.app/)
 
 ## Features
 - **Interactive UI Design**
