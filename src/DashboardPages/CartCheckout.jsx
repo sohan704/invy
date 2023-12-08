@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import jsPDF from "jspdf";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 const CartCheckout = () => {
 
   const axiosPublic = UseAxiosPublic();
   const retrievedCartData = JSON.parse(localStorage.getItem('cart'));
   console.log(retrievedCartData);
- 
+
 
   const doc = new jsPDF();
 
@@ -19,7 +20,7 @@ const CartCheckout = () => {
     const formattedDateTime = currentDateTime.toLocaleString();
     const totalPay = retrievedCartData.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.sellingPrice;
-    }, 0); 
+    }, 0);
 
     doc.setFontSize(fontSize);
     const allProducts = retrievedCartData.map(item => {
@@ -37,27 +38,54 @@ const CartCheckout = () => {
     doc.save("Invoice.pdf");
     // doc.save(`${checkoutProduct?.productName} sold at ${formattedDateTime}.pdf`);
   }
-  
-  useEffect(()=>{
 
-  },[retrievedCartData]);
+  useEffect(() => {
+
+  }, [retrievedCartData]);
 
 
 
   const payTheDamnBill = () => {
     generatePdf();
-    axiosPublic.post('/addToCart', retrievedCartData).then(res => console.log(res.data)).catch(err => console.log(err));
-     
+
+    axiosPublic.post('/addToCart1', retrievedCartData).then(res => {
+      console.log(res.data);
+      toast.success('Paid!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }).catch(err => console.log(err));
+
+    axiosPublic.patch('/addToCart2', retrievedCartData).then(res => {
+      console.log(res.data);
+      toast.success('Data Updated!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }).catch(err => console.log(err));
+
     localStorage.removeItem('cart');
-    location.reload();
+    // location.reload();
   }
 
 
   return (
     <div>
-       <Helmet>
-      <title>Invy | Cart Checkout</title>
-    </Helmet>
+      <Helmet>
+        <title>Invy | Cart Checkout</title>
+      </Helmet>
       <div className="my-10 text-3xl text-black text-center">
         Total Products in Cart : {retrievedCartData?.length || '0'}
         <div className="flex justify-center my-5">

@@ -24,18 +24,21 @@ const Blank = () => {
   }, [])
 
   if (ownerInfo?.owner) {
-    return <Navigate to="/dashboard"></Navigate>
+    // return <Navigate to="/dashboard"></Navigate>
+    navigate('/dashboard');
   }
   // if (ownerInfo?.owner) {
   //   return <Navigate to="/dashboard/addProduct"></Navigate>
   // }
 
   if (adminInfo?.admin) {
-    return <Navigate to="/dashboard"></Navigate>
+    // return <Navigate to="/dashboard"></Navigate>
+    navigate('/dashboard');
   }
 
   if ((adminInfo !== null) && (ownerInfo !== null) && !adminInfo?.admin && !ownerInfo?.owner) {
-    return <Navigate to="/createShop"></Navigate>
+    // return <Navigate to="/createShop"></Navigate>
+    navigate('/createShop');
   }
 };
 
